@@ -1,4 +1,4 @@
-<h1>Fine-Tuning BERT model(Bi-Directional Encoder Decoder) for Named Entity Recognition task using PyTorch</h1>
+<h1>Fine-Tuning BERT for Named Entity Recognition task using PyTorch</h1>
 
 <p>
   In this project we use BERT with huggingface PyTorch library to quickly and efficiently fine-tune a model to get near state of the art performance in Named Entity Recognition.</p>

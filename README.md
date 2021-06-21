@@ -47,7 +47,7 @@ Along with this we also have a label map dictionary that will map our tags to in
 
 <h2>Tokenization and Input formatting </h2>
 <p>
-  We need to map the words to theirs IDs in the BERT vocabulary and forwords that arent in the BERT vocabulary, the tokenizer will break these down into subwords. BERT requires thatwe prepend the special  <strong>[CLS]  </strong> token to the beginning of every sentence and append the <strong> [SEP]</strong> token at the end. To support the batch processing of the inputs all the sentences should be padded out(with special [PAD] token) to the same length.
+  We need to map the words to theirs IDs in the BERT vocabulary and forwords that arent in the BERT vocabulary, the tokenizer will break these down into subwords. BERT requires thatwe prepend the special  <strong>[CLS]  </strong> token to the beginning of every sentence and append the <strong> [SEP]</strong> token at the end. To support the batch processing of the inputs all the sentences should be padded out(with special <strong>[PAD]</strong> token) to the same length.
   
   </p>
   
@@ -64,10 +64,26 @@ Along with this we also have a label map dictionary that will map our tags to in
  We Divided our training set to use 90% for training and 10% for validation. For  we used TenSorDataset for combining training inputs into tensors.
  We'll also create an iterator for our dataset using the torch DataLoader class. This helps save on memory during training because, unlike a for loop, with an iterator the entire dataset does not need to be loaded into memory.
  </p>
- 
- 
- 
- 
-  
   </p>
+ <h2> BERTForTokenClassification </h2>
+ <p>
+  We have used BertForTokenClassification which is a normal Bert model with an added single linear layer that is used for classification of each
+  token entity class. As we feed input data, the entire pre-Trained Bert model and the additional untrained classification layer is trained our specific task
+  
+  We stored the average loss after each epoch so we can plot them. For each batch of the training data,we progress the update for every 40 batches. We unpack the training batch from the data loader. A <strong>batch </strong>containes three pytorch tensors:
  
+<ul>
+    <li>[0]: input ids </li>
+    <li>[1]: attention masks </li>
+    <li>[2]: labels </li>
+</ul> 
+   
+   
+  </p>
+  
+  <h2>Training Loss </h2>
+  
+  ![image](https://user-images.githubusercontent.com/57468338/122700673-b6ee0680-d219-11eb-9511-552fa62d9aa0.png)
+
+  
+
